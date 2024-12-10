@@ -1,6 +1,8 @@
 import modules from '../modules/index.js';
 import parseValue from './parse-value.js';
 
+const classMap = new Map();
+
 export default function (classNames) {
   const rules = [];
   const classes = [];
@@ -8,7 +10,14 @@ export default function (classNames) {
   const classNamesList = classNames.trim().split(/\s+/);
 
   for (const className of classNamesList) {
-    let itemRules = checkClass(className, classNamesList);
+    let itemRules;
+
+    if (classMap.has(className)) {
+      itemRules = classMap.get(className);
+    } else {
+      itemRules = checkClass(className, classNamesList);
+      classMap.set(className, itemRules);
+    }
 
     if (itemRules)
       rules.push(itemRules);
@@ -25,6 +34,7 @@ export default function (classNames) {
 
 
 function checkClass(classItem, classNamesList) {
+
   const [name, ...vars] = classItem.split('--');
   const [moduleName, ...params] = name.split('-');
 
