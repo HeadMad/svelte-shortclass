@@ -5,14 +5,13 @@ const fixed = {
   auto: 'auto',
 }
 
-export default (value) => {
-  const params = value.slice(6);
+export default ({params: [value]}) => {
 
-  if (params in fixed)
-    return 'flex-basis: ' + fixed[params] + ';';
+  if (value in fixed)
+    return 'flex-basis: ' + fixed[value] + ';';
 
-  if (/^[0-9\.\/]+(px|em|rem|vh|vw|vmin|vmax|%)?$/.test(params))
-    return 'flex-basis: ' + parseValue(params) + ';';
+  if (/^[0-9\.\/]+(px|em|rem|vh|vw|vmin|vmax|%)?$/.test(value))
+    return 'flex-basis: ' + parseValue(value) + ';';
 
   return 0;
 };

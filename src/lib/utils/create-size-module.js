@@ -12,8 +12,8 @@ const fixed = {
   fit: 'fit-content'
 };
 
-export default function (value) {
-  const params = value.split('-');
+export default function ({raw, vars}) {
+  const params = raw.split('-');
 
   if (params.length === 1)
     return null;
@@ -29,6 +29,9 @@ export default function (value) {
   };
 
   const prop = props[ltr];
+
+  if (vars)
+    return `${minmax ? minmax + '-' : ''}${prop}: ${vars};`;
 
   if (/^[0-9\.\/]+(\w{1,4}|%)?$/.test(val))
     return `${minmax ? minmax + '-' : ''}${prop}: ${parseValue(val)};`;

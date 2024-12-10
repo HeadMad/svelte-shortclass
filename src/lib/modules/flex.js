@@ -15,20 +15,18 @@ const flexes = {
 };
 
 
-export default (value) => {
-  if (value === 'flex')
+export default ({raw, params: [value]}) => {
+  if (raw === 'flex')
     return 'display: flex;';
 
-  const params = value.slice(5);
+  if (value in directions)
+    return 'flex-direction: ' + directions[value] + ';';
 
-  if (params in directions)
-    return 'flex-direction: ' + directions[params] + ';';
+  if (wraps.includes(value))
+    return 'flex-wrap: ' + value + ';';
 
-  if (wraps.includes(params))
-    return 'flex-wrap: ' + params + ';';
-
-  if (params in flexes)
-    return 'flex: ' + flexes[params] + ';';
+  if (value in flexes)
+    return 'flex: ' + flexes[value] + ';';
 
   return null;
 }

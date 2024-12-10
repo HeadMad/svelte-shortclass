@@ -1,4 +1,5 @@
 import modules from '../modules/index.js';
+import parseValue from './parse-value.js';
 
 export default function (classNames) {
   const rules = [];
@@ -23,11 +24,34 @@ export default function (classNames) {
 };
 
 
-function checkClass(className, classNamesList) {
-  const moduleName = className.split('-')[0];
+function checkClass(classItem, classNamesList) {
+  const [name, ...vars] = classItem.split('--');
+  const [moduleName, ...params] = name.split('-');
 
-  if (moduleName in modules)
-    return modules[moduleName](className, classNamesList);
+  if (!(moduleName in modules))
+    return null;
+
+  const mod = modules[moduleName];
+
+  if (typeof module === 'string')
+    return mod;
+
+  if (typeof mod === 'function')
+    return mod({
+      name,
+      params,
+      raw: classItem,
+      list: classNamesList,
+      get vars() { return varsToString(vars) }
+    });
 
   return null;
+}
+
+function varsToString(vars) {
+  if (vars.length)
+    return vars.reduceRight((acc, v) => {
+      const [name, alt] = v.split('|');
+      return `var(--${name}${alt ? ', ' + parseValue(alt) : acc ? ', ' + acc : ''})`;
+    }, '');
 }

@@ -12,18 +12,18 @@ const sides = {
   y: ['top', 'bottom']
 };
 
-export default function (prop) {
-  return value => {
-    if (/^.-(t|r|b|l)-([0-9\.\/]+(px|em|rem|vh|vw|vmin|vmax|%)?|auto)$/i.test(value))
-      return `${prop}-${side[value[2]]}: ${parseValue(value.slice(4))};`;
+export default function (prop, s) {
+  return ({params, vars}) => {
+    const value = vars ?? params.map(parseValue).join(' ');
 
+    if (!s)
+      return `${prop}: ${value};`;
 
-    if (/^.-(x|y)-([0-9\.\/]+(px|em|rem|vh|vw|vmin|vmax|%)?|auto)$/i.test(value))
-      return sides[value[2]].map(side => `${prop}-${side}: ${parseValue(value.slice(4))};`).join('\n');
+    if (s in side)
+      return `${prop}-${side[s]}: ${value};`;
 
-
-    if (/^.(-([0-9\.\/]+(px|em|rem|vh|vw|vmin|vmax|%)?|auto)){1,4}$/i.test(value))
-      return prop + ': ' + value.slice(2).split('-').map(v => parseValue(v)).join(' ') + ';';
+    if (s in sides)
+      return sides[s].map(side => `${prop}-${side}: ${value};`).join('\n');
 
     return null;
   }

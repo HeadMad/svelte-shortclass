@@ -17,20 +17,19 @@ const weights = {
   black: 900
 }
 
-export default function (value) {
-  let item = value.slice(5);
+export default function ({params: [value]}) {
 
-  if (!item)
+  if (!value)
     return null;
 
-  if (/\d+/.test(item))
-    return 'font-weight: ' + item + ';';
+  if (/\d+/.test(value))
+    return 'font-weight: ' + value + ';';
 
-  if (item in families)
-    return 'font-family: ' + families[item] + ';';
+  if (value in families)
+    return 'font-family: ' + families[value] + ';';
 
-  if (item in weights)
-    return 'font-weight: ' + weights[item] + ';';
+  if (value in weights)
+    return 'font-weight: ' + weights[value] + ';';
 
   return null;
 };

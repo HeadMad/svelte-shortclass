@@ -269,19 +269,19 @@ const colors = {
   }
 };
 
-export default function (args) {
-  if (!(args[0] in colors))
+export default function (params) {
+  if (!(params[0] in colors))
     return null;
 
-  if (!args[1]) {
-    if (typeof colors[args[0]] === 'string')
-      return colors[args[0]];
+  if (!params[1]) {
+    if (typeof colors[params[0]] === 'string')
+      return colors[params[0]];
     else
-      return colors[args[0]][500];
+      return colors[params[0]][500];
   }
 
-  if (args[1] in colors[args[0]])
-    return colors[args[0]][args[1]];
+  if (params[1] in colors[params[0]])
+    return colors[params[0]][params[1]];
 
   return null;
 }

@@ -1,7 +1,14 @@
-export default function(value) {
-  if (value === 'box-border')
+const values = {
+  border: 'border-box',
+  content: 'content-box'
+}
+
+export default function({raw}) {
+  if (raw === 'box-border')
   return 'box-sizing: border-box;';
 
-  if (value === 'box-content')
+  if (raw === 'box-content')
   return 'box-sizing: content-box;';
+
+  return null;
 };

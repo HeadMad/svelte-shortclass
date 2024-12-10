@@ -1,2 +1,2 @@
 
-export default () => 'font-style: italic;';
+export default 'font-style: italic;';

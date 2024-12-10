@@ -16,12 +16,16 @@ const sizes = {
   '9xl': '8rem;\nline-height: 1'
 };
 
-export default function(value) {
-  if (/^text-[0-9\.]+(px|em|rem|vh|vw|vmin|vmax|%)?$/i.test(value))
-    return 'font-size: ' + parseValue(value.slice(5)) + ';'
+export default function({params: [value], vars}) {
 
-  if (/^text-(base|[2-9]?xl|xs|sm|lg)$/i.test(value))
-    return 'font-size: ' + sizes[value.slice(5)] + ';';
+  if (vars)
+    return 'font-size: ' + vars + ';';
+
+  if (value in sizes)
+    return 'font-size: ' + sizes[value] + ';';
+
+  if (/^[0-9\.\/]+(\w{1,4}|%)?$/i.test(value))
+    return 'font-size: ' + parseValue(value) + ';'
 
   return null;
 }
