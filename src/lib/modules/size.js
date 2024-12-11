@@ -1,7 +1,7 @@
 import { parseValue } from '../utils/index.js';
 
 export default function ({ params }) {
-  if (!params.lengtgh)
+  if (!params.length)
     return null;
 
   let [width, height] = params;

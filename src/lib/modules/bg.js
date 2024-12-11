@@ -5,5 +5,6 @@ export default function({params}) {
 
   if (color)
     return 'background-color: ' + color + ';';
-  
+
+  return null;
 }

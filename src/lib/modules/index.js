@@ -22,12 +22,13 @@ import gap from './gap.js';
 import order from './order.js';
 import justify from './justify.js';
 import place from './place.js';
-
+import rounded from './rounded.js';
 
 
 export default {
   w, h, min, max, size,
 
+  rounded,
 
   font, not, text, bg, box, z,
 

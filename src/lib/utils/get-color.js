@@ -270,10 +270,13 @@ const colors = {
 };
 
 export default function (params) {
+  if (/^#[0-9a-fA-F]{3,8}$/.test(params[0]))
+    return params[0];
+
   if (!(params[0] in colors))
     return null;
 
-  if (!params[1]) {
+  if (params.length === 1) {
     if (typeof colors[params[0]] === 'string')
       return colors[params[0]];
     else

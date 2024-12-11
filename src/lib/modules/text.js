@@ -1,4 +1,4 @@
-import {parseValue} from '../utils/index.js';
+import {parseValue, getColor} from '../utils/index.js';
 
 const sizes = {
   xs: '0.75rem;\nline-height: 1rem',
@@ -16,7 +16,14 @@ const sizes = {
   '9xl': '8rem;\nline-height: 1'
 };
 
-export default function({params: [value], vars}) {
+export default function({params, vars}) {
+
+  const color = getColor(params);
+
+  if (color)
+    return 'color: ' + color + ';';
+
+  const [value] = params;
 
   if (vars)
     return 'font-size: ' + vars + ';';

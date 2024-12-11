@@ -1,7 +1,15 @@
 
 
-<h1 class="mx-auto max-w-50vmin bg-red-100 pt-20 px--size font-system font-100 text-3xl min-h--size box-border {'hello'}">Welcome to yourede library project</h1>
+<div class="flex p-2 bg-yellow-100 gap-2">
+  <div class="bg-red-400 rounded-3xl-2 size-100px"></div>
+  <div class="bg-red-400  size-100px"></div>
+  <div class="bg-red-400  size-100px"></div>
+  <div class="bg-red-400  size-100px"></div>
+  <div class="bg-red-400  size-100px"></div>
+</div>
 
+
+<h2 class="font-thin font-mono bg-#000 inline-block m-10 p-2 text-#fff rounded">Hello</h2>
 
 
 <style>
