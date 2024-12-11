@@ -3,3 +3,5 @@ export {default as parseClasses} from './parse-classes.js';
 export {default as getColor} from './get-color.js';
 export {default as createSpaceModule} from './create-space-module.js';
 export {default as createSizeModule} from './create-size-module.js';
+export {default as createDirectionModule} from './create-dirrection-module.js';
+export {default as createAligmentsModule} from './create-aligments-module.js';
