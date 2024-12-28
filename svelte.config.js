@@ -1,5 +1,5 @@
 import adapter from '@sveltejs/adapter-auto';
-import shortclass from './src/lib/main.js';
+import shortclass from './src/lib/index.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
