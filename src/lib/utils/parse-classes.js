@@ -14,6 +14,7 @@ export default function (classNames) {
 
     if (classMap.has(className)) {
       itemRules = classMap.get(className);
+      
     } else {
       itemRules = checkClass(className, classNamesList);
       classMap.set(className, itemRules);
